@@ -23,13 +23,16 @@ build_scripts: build_dir
 build: build_scripts
     cargo build
 
-install: build_scripts
-    sudo mkdir -p /usr/local/var/open-tab/
-    @sudo just copy_if_updated /usr/local/var/open-tab/list_chrome_tabs.scpt build/list_chrome_tabs.scpt
-    @sudo just copy_if_updated /usr/local/var/open-tab/activate_chrome_tab.scpt build/activate_chrome_tab.scpt
+install:
+    #just build_scripts
+    #sudo mkdir -p /usr/local/var/open-tab/
+    #@sudo just copy_if_updated /usr/local/var/open-tab/list_chrome_tabs.scpt build/list_chrome_tabs.scpt
+    #@sudo just copy_if_updated /usr/local/var/open-tab/activate_chrome_tab.scpt build/activate_chrome_tab.scpt
 
-    SCRIPT_DIR=/usr/local/var/open-tab/ cargo build --release
-    @sudo just copy_if_updated /usr/local/bin/open-tab ${CARGO_TARGET_DIR:-target}/release/open-tab
+    #SCRIPT_DIR=/usr/local/var/open-tab/ cargo build --release
+    #@sudo just copy_if_updated /usr/local/bin/open-tab ${CARGO_TARGET_DIR:-target}/release/open-tab
+
+    cargo build --release
 
 check:
     cargo check
